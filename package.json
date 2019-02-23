@@ -1,0 +1,17 @@
+{
+  "name": "language-gsl",
+  "version": "0.0.0",
+  "description": "iMatix Generator Scripting Language support in Atom",
+  "keywords": [
+    "generator scripting language",
+    "language",
+    "grammar",
+    "imatix",
+    "gsl"
+  ],
+  "repository": "https://github.com/sun1x/language-gsl",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0"
+  }
+}

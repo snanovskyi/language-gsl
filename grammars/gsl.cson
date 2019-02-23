@@ -1,0 +1,234 @@
+scopeName: 'source.gsl'
+name: 'iMatix GSL'
+fileTypes: ['gsl']
+limitLineLength: false
+patterns: [
+  { include: '#general' }
+]
+repository:
+  general:
+    patterns: [
+      { include: '#hypen_comment' }
+      { include: '#hash_comment' }
+      { include: '#multiline_comment' }
+      { include: '#operators' }
+      { include: '#access_attribute' }
+      { include: '#access_child' }
+      { include: '#keywords' }
+      { include: '#commands' }
+      { include: '#substitution' }
+      { include: '#for' }
+      { include: '#if' }
+      { include: '#while' }
+      { include: '#scope' }
+      { include: '#new' }
+      { include: '#template' }
+      { include: '#macro' }
+      { include: '#function' }
+      { include: '#function_call' }
+      { include: '#identifier' }
+      { include: '#number' }
+      { include: '#string' }
+    ]
+  hypen_comment:
+    match: '^\\.?(-.*)$'
+    captures:
+      1:
+        name: 'comment.line.gsl'
+  hash_comment:
+    match: '#.*$'
+    name: 'comment.block.gsl'
+  multiline_comment:
+    begin: '/\\*'
+    end: '\\*/'
+    name: 'comment.block.gsl'
+  operators:
+    match: '(\\*|\\/|\\+|-|\\?\\?|\\?|=|<>|>|>=|<|<=|\\?=|\\?<>|\\?>|\\?>=|\\?<|\\?<=|\\||&|!)'
+    name: 'keyword.operator.gsl'
+  access_attribute:
+    match: '\\.'
+    name: 'keyword.operator.gsl'
+  access_child:
+    match: '->'
+    name: 'keyword.operator.gsl'
+  keywords:
+    match: '\\b(from|as|noalias|nostack|where|by|to|before|after)\\b'
+    captures:
+      1:
+        name: 'keyword.control.gsl'
+  commands:
+    match: '^\\.?\\s*(output|append|close|literal|next|last|delete|copy|move|sort|include|gsl|return|echo|abort)\\b'
+    captures:
+      1:
+        name: 'keyword.control.gsl'
+  substitution:
+    begin: '\\$\\('
+    beginCaptures:
+      0:
+        name: 'punctuation.section.embedded.gsl'
+    end: '\\)'
+    endCaptures:
+      0:
+        name: 'punctuation.section.embedded.gsl'
+    patterns: [
+      { include: '#hash_comment' }
+      { include: '#multiline_comment' }
+      { include: '#expression' }
+    ]
+  for:
+    begin: '^\\.?\\s*(for)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*(endfor)\\b'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      {
+        match: '\\bwhere\\b'
+        name: 'keyword.control.gsl'
+      }
+      { include: '#general' }
+    ]
+  if:
+    begin: '^\\.?\\s*(if)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*(endif)\\b'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      {
+        match: '^\\.?\\s*(elsif)\\b'
+        captures:
+          1:
+            name: 'keyword.control.gsl'
+      }
+      {
+        match: '^\\.?\\s*(else)\\b'
+        captures:
+          1:
+            name: 'keyword.control.gsl'
+      }
+      { include: '#general' }
+    ]
+  while:
+    begin: '^\\.?\\s*(while)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*(endwhile)\\b'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      { include: '#general'}
+    ]
+  scope:
+    begin: '^\\.?\\s*(scope)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*(endscope)\\b'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      { include: '#general' }
+    ]
+  new:
+    begin: '^\\.?\\s*(new)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*(endnew)\\b'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      { include: '#general' }
+    ]
+  template:
+    begin: '^\\.?\\s*(template)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*(endtemplate)\\s*$'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      { include: '#general' }
+    ]
+  macro:
+    begin: '^\\.?\\s*(macro)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*\\b(endmacro)\\b'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      { include: '#general' }
+    ]
+  function:
+    begin: '^\\.?\\s*\\b(function)\\b'
+    beginCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    end: '^\\.?\\s*\\b(endfunction)\\b'
+    endCaptures:
+      1:
+        name: 'keyword.control.gsl'
+    patterns: [
+      { include: '#general' }
+    ]
+  function_call:
+    begin: '\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()'
+    beginCaptures:
+      1:
+        name: 'entity.name.function.gsl'
+    end: '(?<=\\))'
+    patterns: [
+      {
+        begin: '\\('
+        beginCaptures:
+          0:
+            name: 'punctuation.bracket.round.gsl'
+        end: '\\)'
+        endCaptures:
+          0:
+            name: 'punctuation.bracket.round.gsl'
+        patterns: [
+          { include: '#hash_comment' }
+          { include: '#multiline_comment' }
+          { include: '#expression' }
+        ]
+      }
+    ]
+  identifier:
+    match: '\\b[a-zA-Z_][a-zA-Z0-9_]*\\b'
+    name: 'variable.other.gsl'
+  number:
+    match: '\\b\\d+(\\.\\d+)?\\b'
+    name: 'constant.numeric.gsl'
+  string:
+    begin: '"'
+    end: '"'
+    name: 'string.quoted.gsl'
+    patterns: [
+      { include: '#substitution' }
+    ]
+  expression:
+    patterns: [
+      { include: '#operators' }
+      { include: '#substitution' }
+      { include: '#function_call' }
+      { include: '#identifier' }
+      { include: '#number' }
+      { include: '#string' }
+    ]
