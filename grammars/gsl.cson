@@ -46,7 +46,7 @@ repository:
     match: '(\\*|\\/|\\+|-|\\?\\?|\\?|=|<>|>|>=|<|<=|\\?=|\\?<>|\\?>|\\?>=|\\?<|\\?<=|\\||&|!)'
     name: 'keyword.operator.gsl'
   access_attribute:
-    match: '\\.'
+    match: '(?<!^)\\.'
     name: 'keyword.operator.gsl'
   access_child:
     match: '->'
