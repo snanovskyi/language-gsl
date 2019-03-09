@@ -218,7 +218,7 @@ repository:
     name: 'constant.numeric.gsl'
   string:
     begin: '"'
-    end: '"'
+    end: '(?<!\\\\)"'
     name: 'string.quoted.gsl'
     patterns: [
       { include: '#substitution' }
