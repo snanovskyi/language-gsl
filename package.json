@@ -1,6 +1,6 @@
 {
   "name": "language-gsl",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "iMatix Generator Scripting Language support in Atom",
   "keywords": [
     "generator scripting language",
