@@ -28,7 +28,8 @@ repository:
       { include: '#function_call' }
       { include: '#identifier' }
       { include: '#number' }
-      { include: '#string' }
+      { include: '#string_double_quoted' }
+      { include: '#string_signle_quoted' }
     ]
   hypen_comment:
     match: '^\\.?(-.*)$'
@@ -216,9 +217,16 @@ repository:
   number:
     match: '\\b\\d+(\\.\\d+)?\\b'
     name: 'constant.numeric.gsl'
-  string:
+  string_double_quoted:
     begin: '"'
     end: '(?<!\\\\)"'
+    name: 'string.quoted.gsl'
+    patterns: [
+      { include: '#substitution' }
+    ]
+  string_single_quoted:
+    begin: "'"
+    end: "(?<!\\\\)'"
     name: 'string.quoted.gsl'
     patterns: [
       { include: '#substitution' }
@@ -230,5 +238,6 @@ repository:
       { include: '#function_call' }
       { include: '#identifier' }
       { include: '#number' }
-      { include: '#string' }
+      { include: '#string_double_quoted' }
+      { include: '#string_signle_quoted' }
     ]
