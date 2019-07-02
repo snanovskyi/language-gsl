@@ -29,7 +29,7 @@ repository:
       { include: '#identifier' }
       { include: '#number' }
       { include: '#string_double_quoted' }
-      { include: '#string_signle_quoted' }
+      { include: '#string_single_quoted' }
     ]
   hypen_comment:
     match: '^\\.?(-.*)$'
@@ -225,8 +225,8 @@ repository:
       { include: '#substitution' }
     ]
   string_single_quoted:
-    begin: "'"
-    end: "(?<!\\\\)'"
+    begin: '\''
+    end: '(?<!\\\\)\''
     name: 'string.quoted.gsl'
     patterns: [
       { include: '#substitution' }
@@ -239,5 +239,5 @@ repository:
       { include: '#identifier' }
       { include: '#number' }
       { include: '#string_double_quoted' }
-      { include: '#string_signle_quoted' }
+      { include: '#string_single_quoted' }
     ]
